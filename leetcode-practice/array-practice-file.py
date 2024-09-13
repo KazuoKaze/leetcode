@@ -50,4 +50,55 @@ sl = Solution()
 print(sl.merge(nums1, m, nums2, n))
 
 
+# 108. Convert Sorted Array to Binary Search Tree
+
+
+# Definition for a binary tree node.
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        if not nums:
+            return None
+        
+        mid = len(nums) // 2
+
+        root_node = TreeNode(nums[mid])
+
+        root_node.left = self.sortedArrayToBST(nums[:mid])
+        root_node.right = self.sortedArrayToBST(nums[mid + 1:])
+
+        return root_node
+
+
+sl = Solution()
+nums = [-10,-3,0,5,9]
+# print(sl.sortedArrayToBST(nums))
+bst = sl.sortedArrayToBST(nums)
+
+
+
+# 118. Pascal's Triangle
+
+class Solution(object):
+    def getRow(self, rowIndex):
+        triangle = []
+        for i in range(rowIndex):
+            row = [1] * (i + 1)
+            for j in range(1, i):
+                row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j]
+
+            triangle.append(row)
+
+        return triangle
+
+sl = Solution()
+numRows = 1
+print(sl.getRow(numRows))
+
 
