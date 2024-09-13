@@ -102,3 +102,54 @@ numRows = 1
 print(sl.getRow(numRows))
 
 
+# 136. Single Number
+
+class Solution(object):
+    def singleNumber(self, nums):
+        result = 0
+        for num in nums:
+            result ^= num
+        return result
+
+sl = Solution()
+nums = [4,1,2,1,2]
+print(sl.singleNumber(nums))
+
+
+# 169. Majority Element
+
+class Solution(object):
+    def majorityElement(self, nums):
+        canditae = None
+        count = 0
+        for num in nums:
+            if count == 0:
+                canditae = num
+            count += 1 if canditae == num else -1
+        return canditae
+
+sl = Solution()
+nums = [3,2,3]
+print(sl.majorityElement(nums))
+
+
+
+class Solution(object):
+    def containsDuplicate(self, nums):
+        ## Method 2:
+        hes = {}
+        for num in nums:
+            if num in hes:
+                return True
+            else:
+                hes[num] = 1
+        return False
+    
+        ## Method 3:
+        # return True if len(set(nums)) < len(nums) else False
+
+sl = Solution()
+nums = [1,1,1,3,3,4,3,2,4,2]
+print(sl.containsDuplicate(nums))
+
+
