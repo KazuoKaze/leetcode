@@ -153,3 +153,67 @@ nums = [1,1,1,3,3,4,3,2,4,2]
 print(sl.containsDuplicate(nums))
 
 
+# 219. Contains Duplicate II
+
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        hes = {}
+        for i in range(len(nums)):
+            if nums[i] in hes:
+                if abs(hes[nums[i]] - i) <= k:
+                    return True
+                else:
+                    hes[nums[i]] = i
+            else:
+                hes[nums[i]] = i
+        return False
+
+sl = Solution()
+nums = [1,2,3,1,2,3]
+k = 2
+print(sl.containsNearbyDuplicate(nums, k))
+
+
+
+# 268. Missing Number
+
+
+
+
+class Solution(object):
+    def missingNumber(self, nums):
+        n = len(nums)
+        expected_sum = n * (n + 1) // 2
+        actual_sum = sum(nums)
+        return expected_sum - actual_sum
+
+sl = Solution()
+nums = [3,0,1]
+print(sl.missingNumber(nums))
+
+
+#  283. Move Zeroes
+
+
+class Solution(object):
+    def moveZeroes(self, nums):
+        if len(nums) > 1:
+            i, j = 0, 1
+            while j < len(nums):
+                if nums[i] == 0 and nums[j] != 0:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    i += 1
+                    j += 1
+                else:
+                    if nums[i] != 0:
+                        i += 1
+                        j += 1
+                    else:
+                        j += 1
+            return nums
+        else:
+            return nums
+
+sl = Solution()
+nums = [0,1,0,3,12]
+print(sl.moveZeroes(nums))
